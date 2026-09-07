@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://t1m20rja376r"]
+
+[ext_resource type="Script" uid="uid://bwabu4waypp3g" path="res://TimerBox.gd" id="1_qsvys"]
+[ext_resource type="Texture2D" uid="uid://4uba4uy22v01" path="res://Assets/Images/TimerBox.png" id="2_aiya8"]
+
+[node name="TimerBox" type="Node2D" unique_id=546223221]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_qsvys")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2057551468]
+texture = ExtResource("2_aiya8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1121919389]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -639.0
+offset_top = -339.5
+offset_right = 639.0
+offset_bottom = 339.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 60
+theme_override_font_sizes/normal_font_size = 450
+bbcode_enabled = true
+text = "01:23"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

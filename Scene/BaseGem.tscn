@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dp7cakcxfipu4"]
+
+[ext_resource type="Script" uid="uid://qnc3bkqfhbkq" path="res://Scripts/BaseGem.gd" id="1_qbcuw"]
+[ext_resource type="Shader" uid="uid://d3s1v4xh6g1v6" path="res://Shaders/BaseGem.gdshader" id="1_w4ff1"]
+[ext_resource type="Texture2D" uid="uid://bn3o4mhlhu3x8" path="res://Assets/Gem/GreenMask.png" id="2_w8mdn"]
+[ext_resource type="Texture2D" uid="uid://vyt21tki6djp" path="res://Assets/Gem/Green.png" id="2_wec5u"]
+[ext_resource type="Texture2D" uid="uid://oxjxnuje6clu" path="res://Assets/Gem/GreenExplodeSheet.png" id="3_wec5u"]
+[ext_resource type="Texture2D" uid="uid://3gwi8jrjt5uu" path="res://Assets/Gem/SelectedGreen.png" id="4_kva03"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8mdn"]
+resource_local_to_scene = true
+shader = ExtResource("1_w4ff1")
+shader_parameter/hole_mask = ExtResource("2_w8mdn")
+shader_parameter/hole_progress = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pme5b"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kva03"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 280.0
+gravity = Vector3(0, 0, 0)
+damping_min = 30.000002
+damping_max = 50.000004
+scale_min = 0.29999998
+scale_max = 0.39999998
+anim_offset_max = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pme5b"]
+size = Vector2(80, 80)
+
+[node name="GemRectMode" type="Control" unique_id=1420025103]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_qbcuw")
+
+[node name="MainSprite" type="Sprite2D" parent="." unique_id=882067333]
+material = SubResource("ShaderMaterial_w8mdn")
+position = Vector2(40, 40)
+scale = Vector2(0.3883495, 0.3883495)
+texture = ExtResource("2_wec5u")
+centered = false
+offset = Vector2(-102.99999, -102.99999)
+
+[node name="SelectedSprite" type="Sprite2D" parent="." unique_id=846651954]
+use_parent_material = true
+texture = ExtResource("4_kva03")
+
+[node name="Number" type="RichTextLabel" parent="." unique_id=65264095]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 40)
+mouse_filter = 2
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "4"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Explode" type="GPUParticles2D" parent="." unique_id=823925924]
+material = SubResource("CanvasItemMaterial_pme5b")
+position = Vector2(40, 40)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 30
+texture = ExtResource("3_wec5u")
+lifetime = 0.35000000000000003
+one_shot = true
+preprocess = 0.05
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kva03")
+
+[node name="GemArea" type="Area2D" parent="." unique_id=2121750181]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GemArea" unique_id=214254077]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_pme5b")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://2d11qfa6k7dj"]
+
+[ext_resource type="Script" uid="uid://cpr1yageta75y" path="res://Scripts/ModeSelector.gd" id="1_16e5j"]
+[ext_resource type="Texture2D" uid="uid://db7jka1aftorg" path="res://Assets/Images/Background.png" id="2_1nnis"]
+[ext_resource type="Texture2D" uid="uid://llelcmxqng7y" path="res://Assets/Images/Logo2.png" id="3_53oyy"]
+
+[node name="ModeSelector" type="Control" unique_id=348895445]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_16e5j")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1105482155]
+position = Vector2(960, 640)
+texture = ExtResource("2_1nnis")
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=777407433]
+position = Vector2(959.99994, 279.99997)
+scale = Vector2(2, 2)
+texture = ExtResource("3_53oyy")

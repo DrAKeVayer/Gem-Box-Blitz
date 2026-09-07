@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://gqd613mdu4b"]
+
+[ext_resource type="Script" uid="uid://bxv2i3bx4kv15" path="res://Scripts/RoundButton.gd" id="1_dfk5k"]
+[ext_resource type="Texture2D" uid="uid://clh7ukwqw1rkc" path="res://Assets/Images/RoundButtonRed.png" id="2_p1ucq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pme5b"]
+radius = 192.0
+
+[node name="RoundButton" type="Button" unique_id=1737363930]
+anchors_preset = -1
+anchor_right = 0.22500001
+anchor_bottom = 0.393
+offset_right = -392.00003
+offset_bottom = -384.44
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfk5k")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1535588031]
+
+[node name="ColorState" type="Sprite2D" parent="." unique_id=1416909072]
+position = Vector2(211, 213)
+texture = ExtResource("2_p1ucq")
+
+[node name="ClickArea" type="Area2D" parent="." unique_id=1390243699]
+
+[node name="ClickShape" type="CollisionShape2D" parent="ClickArea" unique_id=1836395491]
+position = Vector2(208, 208)
+shape = SubResource("CircleShape2D_pme5b")

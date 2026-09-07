@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://g5oxj4qiik4h"]
+
+[ext_resource type="Texture2D" uid="uid://db7jka1aftorg" path="res://Assets/Images/Background.png" id="1_c6fb4"]
+[ext_resource type="Script" uid="uid://d021g6npnbsp5" path="res://Scripts/MainMenu.gd" id="1_d4yab"]
+[ext_resource type="Texture2D" uid="uid://llelcmxqng7y" path="res://Assets/Images/Logo2.png" id="3_6o0c3"]
+
+[node name="MainMenu" type="Control" unique_id=1607315988]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_d4yab")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2060691219]
+position = Vector2(960, 640)
+texture = ExtResource("1_c6fb4")
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=957216357]
+position = Vector2(959.99994, 279.99997)
+scale = Vector2(2, 2)
+texture = ExtResource("3_6o0c3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1919110299]
+custom_minimum_size = Vector2(1200, 200)
+layout_mode = 0
+offset_left = 720.0
+offset_top = 880.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_colors/default_color = Color(0.5411765, 1, 0.27058825, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Developed By Doan Anh Khuong - 25520928"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 2

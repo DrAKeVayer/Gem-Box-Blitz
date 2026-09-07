@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cy4xfvxxi7uvh"]
+
+[ext_resource type="Script" uid="uid://mitppk0c3tiq" path="res://Scripts/BasicGameMode.gd" id="1_7ib7x"]
+[ext_resource type="PackedScene" uid="uid://dxpapnjqoo21d" path="res://Scene/BasicUI.tscn" id="2_d40ga"]
+[ext_resource type="PackedScene" uid="uid://cgf0sk62a0sby" path="res://Scene/NormalGrid.tscn" id="3_6n67h"]
+[ext_resource type="Script" uid="uid://caqrh8y83ca50" path="res://Scripts/GridTestMode.gd" id="4_q7ufh"]
+
+[node name="TestMode" type="Node2D" unique_id=1540289111]
+script = ExtResource("1_7ib7x")
+selection_mode = 1
+initial_time = 10.0
+
+[node name="BasicUI" parent="." unique_id=1222850837 instance=ExtResource("2_d40ga")]
+
+[node name="NormalGrid" parent="." unique_id=704081411 instance=ExtResource("3_6n67h")]
+position = Vector2(56, 192)
+script = ExtResource("4_q7ufh")

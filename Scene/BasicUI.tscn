@@ -1,0 +1,302 @@
+[gd_scene format=3 uid="uid://dxpapnjqoo21d"]
+
+[ext_resource type="Script" uid="uid://winogshfyfhm" path="res://Scripts/UIGameMode1.gd" id="1_vodri"]
+[ext_resource type="Shader" uid="uid://d2qeqeoc0cesk" path="res://Shaders/BackgroundBar.gdshader" id="2_iiml8"]
+[ext_resource type="Texture2D" uid="uid://bg4bx2jjyjqqh" path="res://Assets/Images/TimerBarEmpty.png" id="3_4uysq"]
+[ext_resource type="Texture2D" uid="uid://dmxwngsr2nn3g" path="res://Assets/Images/RedBorder.png" id="3_ja2vb"]
+[ext_resource type="Texture2D" uid="uid://c7x34h44mwsad" path="res://Assets/Images/GrayBackground.png" id="3_jvaml"]
+[ext_resource type="Shader" uid="uid://bojrd5mxk7lf" path="res://Shaders/TimerBar.gdshader" id="4_a1y7h"]
+[ext_resource type="Texture2D" uid="uid://ckgpmpkrqgeg2" path="res://Assets/Images/FlameBackground.png" id="4_fh5nu"]
+[ext_resource type="Shader" uid="uid://c8gg7mry1msre" path="res://Shaders/BurstWave.gdshader" id="4_jvaml"]
+[ext_resource type="Texture2D" uid="uid://btj7fl312jhu8" path="res://Assets/Images/TimerBarCroppedFilled.png" id="4_lib3r"]
+[ext_resource type="PackedScene" uid="uid://t1m20rja376r" path="res://Scene/TimerBox.tscn" id="5_lib3r"]
+[ext_resource type="Texture2D" uid="uid://dq2hy67w7qlpp" path="res://Assets/Images/ComboBarEmpty.png" id="7_sio22"]
+[ext_resource type="Texture2D" uid="uid://ceattms7s7xkl" path="res://Assets/Images/GoldParticle.png" id="8_iieoh"]
+[ext_resource type="Texture2D" uid="uid://dciljsuoc5vpo" path="res://Assets/Images/ComboBarFilled.png" id="8_v6s8t"]
+[ext_resource type="Texture2D" uid="uid://brxhe6n44r8bt" path="res://Assets/Images/LevelBar.png" id="9_v6s8t"]
+[ext_resource type="Texture2D" uid="uid://bphk8mupcam5b" path="res://Assets/SpriteSheet/Flame.png" id="11_iieoh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qypq"]
+shader = ExtResource("2_iiml8")
+shader_parameter/current_gradient_a = Color(1, 1, 1, 1)
+shader_parameter/current_gradient_b = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/target_gradient_a = Color(0, 0.4, 1, 1)
+shader_parameter/target_gradient_b = Color(0, 1, 0.5, 1)
+shader_parameter/scroll_offset = 0.0
+shader_parameter/gradient_scale = 1.00000002375
+shader_parameter/crest_color = Color(1, 1, 1, 1)
+shader_parameter/current_pos = Vector2(0.5, -0.5)
+shader_parameter/move_direction = Vector2(1, 0)
+shader_parameter/wave_crest_intensity = 0.0
+shader_parameter/wave_angle = 0.32500001217762
+shader_parameter/wave_frequency = 35.0
+shader_parameter/wave_speed = 8.0
+shader_parameter/wave_width = 0.20000000298023
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvaml"]
+shader = ExtResource("4_jvaml")
+shader_parameter/current_gradient_a = Color(0.9, 0.9, 0.9, 1)
+shader_parameter/current_gradient_b = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/target_gradient_a = Color(0, 0.4, 1, 1)
+shader_parameter/target_gradient_b = Color(0, 1, 0.5, 1)
+shader_parameter/scroll_offset = 0.0
+shader_parameter/gradient_scale = 1.5
+shader_parameter/color_mix_factor = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6s8t"]
+shader = ExtResource("4_a1y7h")
+shader_parameter/is_glowing = true
+shader_parameter/tint_color = Color(1, 0.9, 0, 1)
+shader_parameter/pulse_speed = 4.00000018674012
+shader_parameter/min_alpha = 0.10000000475
+shader_parameter/max_alpha = 0.50000002375
+shader_parameter/chevron_progress = 0.0
+shader_parameter/chevron_color = Color(1, 1, 1, 1)
+shader_parameter/chevron_alpha = 0.6
+shader_parameter/chevron_thickness = 0.10000000405148
+shader_parameter/chevron_angle = 0.30000001099011997
+
+[sub_resource type="Gradient" id="Gradient_a1y7h"]
+offsets = PackedFloat32Array(0, 0.5269461, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iieoh"]
+gradient = SubResource("Gradient_a1y7h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pme5b"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(92, 645, 1)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.19999999
+color_ramp = SubResource("GradientTexture1D_iieoh")
+
+[sub_resource type="Shader" id="Shader_iieoh"]
+code = "shader_type canvas_item;
+
+uniform bool is_glowing = true;
+uniform vec4 tint_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
+uniform float pulse_speed : hint_range(0.1, 10.0) = 2.0;
+uniform float min_alpha : hint_range(0.0, 1.0) = 0.2;
+uniform float max_alpha : hint_range(0.0, 1.0) = 0.4;
+
+uniform float chevron_progress : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 chevron_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float chevron_alpha : hint_range(0.0, 1.0) = 0.6;
+uniform float chevron_thickness : hint_range(0.01, 0.5) = 0.08; 
+uniform float chevron_angle : hint_range(0.1, 2.0) = 0.5;
+
+void fragment() {
+	vec4 org_color = texture(TEXTURE, UV);
+	
+	if (org_color.a == 0.0) {
+		COLOR = org_color;
+	} else {
+		vec3 base_rgb = org_color.rgb;
+		if (is_glowing) {
+			float wave = (sin(TIME * pulse_speed) + 1.0) * 0.5;
+			float current_alpha = mix(min_alpha, max_alpha, wave);
+			base_rgb = mix(base_rgb, tint_color.rgb, current_alpha);
+		}
+
+		if (chevron_progress > 0.0 && chevron_progress < 1.0) {
+			float current_y = mix(1.2, -0.2, chevron_progress);
+			
+			float chevron_line_y = current_y + abs(UV.x - 0.5) * chevron_angle;
+			float dist_to_chevron = abs(UV.y - chevron_line_y);
+
+			float mask = 1.0 - smoothstep(0.0, chevron_thickness, dist_to_chevron);
+			base_rgb = mix(base_rgb, chevron_color.rgb, mask * chevron_alpha * chevron_color.a);
+		}
+
+		COLOR = vec4(base_rgb, org_color.a);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iieoh"]
+shader = SubResource("Shader_iieoh")
+shader_parameter/is_glowing = true
+shader_parameter/tint_color = Color(1, 0.9, 0, 1)
+shader_parameter/pulse_speed = 5.00000023424012
+shader_parameter/min_alpha = 0.2000000095
+shader_parameter/max_alpha = 0.6000000285
+shader_parameter/chevron_progress = 0.0
+shader_parameter/chevron_color = Color(1, 1, 1, 1)
+shader_parameter/chevron_alpha = 0.6
+shader_parameter/chevron_thickness = 0.08
+shader_parameter/chevron_angle = 0.5
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pme5b"]
+particles_animation = true
+particles_anim_h_frames = 9
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qypq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 3, 1)
+spread = 63.948
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -50, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="UiGameMode1" type="Control" unique_id=1222850837]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vodri")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1541074397]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_8qypq")
+position = Vector2(960, 540)
+texture = ExtResource("3_jvaml")
+
+[node name="ComboBackground" type="TextureProgressBar" parent="." unique_id=462168873]
+material = SubResource("ShaderMaterial_jvaml")
+layout_mode = 0
+offset_top = 147.0
+offset_right = 1920.0
+offset_bottom = 1072.0
+mouse_filter = 2
+max_value = 4.0
+step = 0.01
+value = 4.0
+fill_mode = 3
+texture_progress = ExtResource("4_fh5nu")
+tint_progress = Color(0, 0.28235295, 0.78039217, 1)
+
+[node name="RedBorder" type="Sprite2D" parent="." unique_id=547496772]
+position = Vector2(960, 540)
+texture = ExtResource("3_ja2vb")
+
+[node name="TimerBar" type="TextureProgressBar" parent="." unique_id=641767151]
+z_index = 2
+z_as_relative = false
+material = SubResource("ShaderMaterial_v6s8t")
+layout_mode = 0
+offset_left = 1784.0
+offset_top = 208.0
+offset_right = 1969.0
+offset_bottom = 1497.0
+scale = Vector2(0.6, 0.6)
+step = 0.01
+value = 50.0
+fill_mode = 3
+stretch_margin_left = 19
+stretch_margin_top = 17
+stretch_margin_right = 20
+texture_under = ExtResource("3_4uysq")
+texture_progress = ExtResource("4_lib3r")
+texture_progress_offset = Vector2(0, 18)
+
+[node name="TimerBox" parent="TimerBar" unique_id=546223221 instance=ExtResource("5_lib3r")]
+z_index = 4
+position = Vector2(1106.6666, 240)
+
+[node name="TimerParticle" type="GPUParticles2D" parent="TimerBar" unique_id=997876366]
+z_index = 1
+z_as_relative = false
+position = Vector2(93.333336, 640)
+amount = 100
+texture = ExtResource("8_iieoh")
+process_material = SubResource("ParticleProcessMaterial_pme5b")
+
+[node name="InfoHUD" type="HBoxContainer" parent="." unique_id=1646135716]
+layout_mode = 0
+offset_right = 1480.0
+offset_bottom = 112.0
+
+[node name="Level" type="RichTextLabel" parent="InfoHUD" unique_id=1023663206]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0.8437753, 0.25319263, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Level:"
+
+[node name="Total" type="RichTextLabel" parent="InfoHUD" unique_id=589142187]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0.8437753, 0.25319263, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Total: "
+
+[node name="Score" type="RichTextLabel" parent="InfoHUD" unique_id=578692322]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0.84313726, 0.25490198, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Score: "
+
+[node name="ComboBar" type="TextureProgressBar" parent="." unique_id=1017717549]
+material = SubResource("ShaderMaterial_iieoh")
+layout_mode = 0
+offset_left = 1448.0
+offset_top = 56.0
+offset_right = 1848.0
+offset_bottom = 113.0
+scale = Vector2(0.5, 0.5)
+max_value = 4.0
+step = 0.01
+texture_under = ExtResource("7_sio22")
+texture_progress = ExtResource("8_v6s8t")
+
+[node name="ComboCount" type="RichTextLabel" parent="ComboBar" unique_id=1980873689]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = -96.0
+offset_right = 100.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.91319734, 0.89880234, 4.6205523e-06, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 70
+text = "+5"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboParticle" type="GPUParticles2D" parent="ComboBar" unique_id=1118835681]
+material = SubResource("CanvasItemMaterial_pme5b")
+position = Vector2(198, 12)
+emitting = false
+texture = ExtResource("11_iieoh")
+process_material = SubResource("ParticleProcessMaterial_8qypq")
+
+[node name="LevelBar" type="TextureProgressBar" parent="." unique_id=1816356001]
+z_index = 3
+z_as_relative = false
+layout_mode = 0
+offset_left = 1784.0
+offset_top = 208.0
+offset_right = 1969.0
+offset_bottom = 1497.0
+scale = Vector2(0.6, 0.6)
+value = 50.0
+fill_mode = 3
+texture_progress = ExtResource("9_v6s8t")

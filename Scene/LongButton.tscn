@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://3o2jnbtb3vjq"]
+
+[ext_resource type="Script" uid="uid://dgrblsei57b5g" path="res://Scripts/LongButton.gd" id="1_sylmo"]
+[ext_resource type="Texture2D" uid="uid://cvcqygqg7bgxi" path="res://Assets/Images/LongButtonPurple.png" id="2_sylmo"]
+
+[node name="LongButton" type="Button" unique_id=1752574867]
+anchors_preset = -1
+anchor_right = 0.592
+anchor_bottom = 0.23700002
+offset_right = -0.64001465
+offset_bottom = 0.63998413
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("1_sylmo")
+
+[node name="ColorState" type="NinePatchRect" parent="." unique_id=184842598]
+custom_minimum_size = Vector2(500, 298)
+custom_maximum_size = Vector2(2000, 298)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.84999
+offset_bottom = 5.5500183
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sylmo")
+region_rect = Rect2(0, 0, 1102, 298)
+patch_margin_left = 120
+patch_margin_top = 149
+patch_margin_right = 120
+patch_margin_bottom = 149
+
+[node name="Content" type="RichTextLabel" parent="." unique_id=1734666034]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -32.600006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "Demo Text"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cgf0sk62a0sby"]
+
+[ext_resource type="Script" uid="uid://ciepv2483faw3" path="res://Scripts/GridGameMode1.gd" id="1_6ajlf"]
+[ext_resource type="Script" uid="uid://k24ujlm2r8ob" path="res://Scripts/SelectionManager.gd" id="2_g7sjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pme5b"]
+
+[node name="GridGameMode1" type="Node2D" unique_id=704081411]
+script = ExtResource("1_6ajlf")
+
+[node name="Selection" type="Node2D" parent="." unique_id=823538778]
+script = ExtResource("2_g7sjr")
+
+[node name="Area2D" type="Area2D" parent="Selection" unique_id=1689689706]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selection/Area2D" unique_id=487590736]
+shape = SubResource("RectangleShape2D_pme5b")
